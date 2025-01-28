@@ -15,8 +15,6 @@ local function autoCast()
             [2] = 1
         }
         rod.events.cast:FireServer(unpack(args))
-    else
-        warn("No Rod Found!")
     end
 end
 
