@@ -13,32 +13,27 @@ AutoFishing.BobberTicked = tick()
 AutoFishing.ShakeTicked = tick()
 AutoFishing.DebugTime = 2.5
 
--- Function to get the player's current rod
 function AutoFishing.GetCurrentRod()
     if not myStats then return nil end
     local Rod = myStats:FindFirstChild("Stats"):FindFirstChild("rod")
     return Rod and Rod.Value or nil
 end
 
--- Function to detect reel finishing event
 function AutoFishing.GetReelFinished()
     return ReplicatedStorage:FindFirstChild("events") and ReplicatedStorage.events:FindFirstChild("reelfinished")
 end
 
--- Function to simulate key press
 function AutoFishing.Key(keys)
     VirtualInputManager:SendKeyEvent(true, keys, false, LocalPlayer.PlayerGui)
     VirtualInputManager:SendKeyEvent(false, keys, false, LocalPlayer.PlayerGui)
 end
 
--- Function to navigate UI
 function AutoFishing.UINavigation(button)
     if not button then return end
     GuiService.SelectedObject = button
     AutoFishing.Key(Enum.KeyCode.Return)
 end
 
--- Auto Cast function
 local function FreeAutoCast()
     local rod = nil
     for _, item in pairs(LocalPlayer.Character:GetChildren()) do
@@ -53,7 +48,6 @@ local function FreeAutoCast()
     end
 end
 
--- Auto Reel function
 local function FreeAutoReel()
     local AfterShakedone = ReplicatedStorage:FindFirstChild("events")
     if AfterShakedone and AfterShakedone:FindFirstChild("reelfinished") then
