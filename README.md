@@ -1,2 +1,3 @@
 # ALL IN ONE
-Fisch Auto Cast And Auto Finishing Reel and AUTO SHAKE
+
+Free Fisch script lua for cheat
