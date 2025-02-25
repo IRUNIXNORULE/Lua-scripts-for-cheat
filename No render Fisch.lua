@@ -1,3 +1,5 @@
+---- best No render for low fps user - mid ----
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
