@@ -42,30 +42,29 @@ local function no_render(character)
     if hud then
         for _, v in pairs(hud:GetDescendants()) do
             if v.Name == "scroll" then
-                local father = v.Parent
-                local father2 = v.Parent.Parent;
+                local Remove = v.Parent
+                local Remove2 = v.Parent.Parent;
 
-                if father and father2 then
+                if Remove and Remove2 then
                     if not data_listener[v] then
 
                         data_listener[v] = {
                             loaded = false;
                         };
 
-                        for _, fucker in pairs(v:GetChildren()) do
-                            if fucker.ClassName == "ImageButton" or fucker.ClassName == "Frame" then
-                                fucker.Parent = nil;
+                        for _, deleter in pairs(v:GetChildren()) do
+                            if deleter.ClassName == "ImageButton" or fucker.ClassName == "Frame" then
+                                deleter.Parent = nil;
                                 table.insert(data_listener[v], fucker);
                             end
                         end
 
 
-                        v.ChildAdded:Connect(function(fucker)
+                        v.ChildAdded:Connect(function(deleter)
                             task.wait();
-                            if fucker.ClassName == "ImageButton" or fucker.ClassName == "Frame" then
-                                if not table.find(data_listener[v], fucker) then 
-                                    --fucker.Parent = nil;
-                                    table.insert(data_listener[v], fucker);
+                            if deleter.ClassName == "ImageButton" or deleter.ClassName == "Frame" then
+                                if not table.find(data_listener[v], deleter) then 
+                                    table.insert(data_listener[v], deleter);
                                 end; 
                             end
                         end);
@@ -74,9 +73,9 @@ local function no_render(character)
 
                     pcall(function()
 
-                        father:GetPropertyChangedSignal("Visible"):Connect(function()
+                        Remove:GetPropertyChangedSignal("Visible"):Connect(function()
 
-                            if father.Visible then 
+                            if Remove.Visible then 
                                 data_listener[v].loaded = true;
 
                                 if data_listener[v] then
@@ -100,9 +99,9 @@ local function no_render(character)
     
                         end)
     
-                        father2:GetPropertyChangedSignal("Visible"):Connect(function()
+                        Remove2:GetPropertyChangedSignal("Visible"):Connect(function()
     
-                            if father2.Visible then 
+                            if Remove2.Visible then 
                                 data_listener[v].loaded = true;
 
                                 if data_listener[v] then
